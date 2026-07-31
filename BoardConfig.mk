@@ -40,7 +40,7 @@ ENABLE_SCHEDBOOST := true
 
 # Bootloader
 PRODUCT_PLATFORM := pineapple
-TARGET_BOOTLOADER_BOARD_NAME := peridot
+TARGET_BOOTLOADER_BOARD_NAME := uke
 TARGET_NO_BOOTLOADER := true
 TARGET_USES_UEFI := true
 
@@ -115,11 +115,10 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 
 # Crypto
-FIXED_DECRYPT := true
-TW_INCLUDE_CRYPTO := $(FIXED_DECRYPT)
-TW_INCLUDE_CRYPTO_FBE := $(FIXED_DECRYPT)
-TW_INCLUDE_FBE_METADATA_DECRYPT := $(FIXED_DECRYPT)
-BOARD_USES_QCOM_FBE_DECRYPTION := $(FIXED_DECRYPT)
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+BOARD_USES_QCOM_FBE_DECRYPTION := true
 TW_USE_FSCRYPT_POLICY := 2
 
 BOARD_USES_METADATA_PARTITION := true
@@ -167,18 +166,10 @@ TW_EXCLUDE_APEX := true
 TW_HAS_EDL_MODE := true
 
 # Haptic
-FIXED_HAPTICS := true
-
-ifeq ($(FIXED_HAPTICS),true)
-   TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-   TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/vibratorfeature"
-   TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
-else
-   TW_NO_HAPTICS := true
-endif
+TW_NO_HAPTICS := true
 
 TW_USE_SERIALNO_PROPERTY_FOR_DEVICE_ID := true
-TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko focaltech_3683g.ko focaltech_touch.ko goodix_core.ko goodix_ts.ko nxp-nci.ko qti_battery_charger.ko xiaomi_touch.ko"
+TW_LOAD_VENDOR_MODULES := "aw8697-haptic.ko i2c-msm-geni.ko metis.ko miev.ko msm_drm.ko nt36532_touch.ko panel_event_notifier.ko qti_battery_charger.ko si_haptic.ko spi-msm-geni.ko xiaomi_touch.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone48/temp"
 TW_BATTERY_SYSFS_WAIT_SECONDS := 6
